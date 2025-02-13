@@ -7,6 +7,8 @@ import javafx.scene.control.Label;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Logger;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -24,24 +26,22 @@ public class HelloController implements Initializable {
         private TextField txtResultado;
 
         @FXML
-        private Button btnSumar;
+        private Button b_sumar;
 
         @FXML
-        private Button btnResetear;
+        private Button b_resetear;
 
-        @FXML
-        private Label lblError;
+
 
         @FXML
         private void sumarNumeros() {
             try {
-                double num1 = Double.parseDouble(txtNumero1.getText());
-                double num2 = Double.parseDouble(txtNumero2.getText());
+                double num1 = Double.valueOf(txtNumero1.getText());
+                double num2 = Double.valueOf(txtNumero2.getText());
                 double resultado = OperacionModelo.sumar(num1, num2);
                 txtResultado.setText(String.valueOf(resultado));
-                lblError.setText("");
             } catch (NumberFormatException e) {
-                lblError.setText("Ingrese números válidos");
+                System.out.println(e.getMessage());
             }
         }
 
@@ -50,7 +50,6 @@ public class HelloController implements Initializable {
             txtNumero1.clear();
             txtNumero2.clear();
             txtResultado.clear();
-            lblError.setText("");
         }
 
 
